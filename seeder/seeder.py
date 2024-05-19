@@ -15,15 +15,17 @@ def generate(db_importer: DBImporter):
     print("###### END ######")
 
     ###### 1st level ######
-    # add 5 folders to the top level
+    # add 3 folders to the top level
     print("###### 1st LEVEL ######")
-    first_level_folders = [generate_node(root.full_path(), random_string(16), NodeType.DIR)]
+    first_level_folders = []
+    for _ in range(3):
+        first_level_folders.append(generate_node(root.full_path(), random_string(16), NodeType.DIR))
     db_importer.import_nodes(first_level_folders)
     print("###### END ######")
 
     ###### 2nd level ######
-    ### 5 X 100 files = 500 files
-    ### 5 x 20 folders = 100 folders
+    ### 3 X 100 files = 300 files
+    ### 3 x 20 folders = 60 folders
     print("###### 2nd LEVEL ######")
 
     second_level_folders = []
@@ -46,8 +48,8 @@ def generate(db_importer: DBImporter):
     print("###### END ######")
 
     ###### 3rd level ######
-    ### 100 X 1000 files = 100_000 files
-    ### 100 X 10 folders = 1000 folders
+    ### 60 X 1000 files = 60_000 files
+    ### 60 X 10 folders = 600 folders
     print("###### 3rd LEVEL ######")
 
     third_level_folders = []
@@ -71,8 +73,8 @@ def generate(db_importer: DBImporter):
     print("###### END ######")
 
     ###### 4th level ######
-    ### 1000 X 2500 files = 2_500_000 files
-    ### 1000 X 2 folders = 2000 folders
+    ### 600 X 2500 files = 1_500_000 files
+    ### 600 X 2 folders = 1200 folders
     print("###### 4th LEVEL ######")
 
     fourth_level_folders = []
@@ -96,13 +98,13 @@ def generate(db_importer: DBImporter):
     print("###### END ######")
 
     ###### 5th level ######
-    ### 2000 x 750 = 1_500_000
+    ### 1200 x 1000 = 1_200_000
     print("###### 5th LEVEL ######")
 
     for folder in fourth_level_folders:
         fifth_level_files = []
-        # add 750 files to every folder
-        for _ in range(750):
+        # add 1000 files to every folder
+        for _ in range(1000):
             fifth_level_files.append(generate_node(folder.full_path(), random_string(16), NodeType.FILE))
 
         db_importer.import_nodes(fifth_level_files)

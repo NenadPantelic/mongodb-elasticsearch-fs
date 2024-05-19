@@ -12,8 +12,8 @@ def generate_storage_node():
 
 def generate_node(parent_path, name, _type=NodeType.FILE) -> Node:
     if _type == NodeType.FILE:
-        return FileNode(name, parent_path, generate_storage_node())
+        return FileNode(parent_path, name, generate_storage_node())
     elif _type == NodeType.DIR:
-        return Node(name, parent_path)
+        return Node(parent_path, name)
 
     raise ValueError(f"Unable to map {_type} to a valid node type.")

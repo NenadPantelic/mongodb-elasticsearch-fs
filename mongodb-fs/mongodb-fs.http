@@ -1,0 +1,64 @@
+@base-url=http://localhost:9500/api/v1/fs
+
+### Get node
+GET {{base-url}}/nodes/6649f4ef7b6105ec8398ab9c
+
+
+### Get node by path
+POST {{base-url}}/nodes
+content-type: application/json
+
+{
+  "parentPath": "/ur0EriZVNqqzjf38/",
+  "name": "aGKX9zqk9G2MxDbK"
+}
+
+
+### Get folder content
+GET {{base-url}}/dirs?parentPath=/lnPQXQWs1XL0coWS/MikOg4jrsK5EM9pL/9ept1MynCkIROlBm/1wzoCyI8MtxJoy3C/DqUoMXmQXDrqhucT/HYys98QDvNjxcHGf/2oEhyHFRoqqz3apg/uOyVjiOvlronPr6G/sc2APK2Nd8m1KirN/qwFEhRBaTlu0rTyC/LHErGyF721bgUzOx/uiCPrxD1oTj0ltk6/fyArvXQuWly4cmP7/mpTWQpHDOaGV5zNc/6mxqZ3JQp8zrW8bz/dzetSDuUXwxxAsF4/DzRj3cdEHpKwUJKB/u2fJMBSEgAlRI4rQ/5SUY4OFh3TPumY0J/VcrRWE7bPDAF3g3X/GuYsHGlxRwJh89dm/&page=2&size=200
+
+
+### Get nodes by name
+GET {{base-url}}/nodes?name=lyLpH4SVxsta8nl6
+
+### Get nodes by name regex
+POST {{base-url}}/nodes/regex-name
+content-type: application/json
+
+{
+  "regex": "^L",
+  "page": 1,
+  "size": 20
+}
+
+### Get nodes by content regex
+POST {{base-url}}/nodes/regex-content
+content-type: application/json
+
+{
+  "regex": "^st",
+  "page": 1,
+  "size": 20
+}
+
+
+### Count nodes in subtree
+GET {{base-url}}/nodes/aggregation/count?parentPath=/ur0EriZVNqqzjf38/4gJvm6cfbp4dsfbE/98Qk0MkdhhKkczmr/
+
+### Count folders in subtree
+GET {{base-url}}/nodes/aggregation/count?parentPath=/ur0EriZVNqqzjf38/4gJvm6cfbp4dsfbE/98Qk0MkdhhKkczmr/&type=DIR
+
+
+### Count files in subtree
+GET {{base-url}}/nodes/aggregation/count?parentPath=/ur0EriZVNqqzjf38/4gJvm6cfbp4dsfbE/98Qk0MkdhhKkczmr/&type=FILE
+
+
+### Count larger files
+GET {{base-url}}/nodes/aggregation/count-larger-files?parentPath=/ur0EriZVNqqzjf38/4gJvm6cfbp4dsfbE/98Qk0MkdhhKkczmr/&threshold=35000
+
+
+### Get the largest file in subtree
+GET {{base-url}}/nodes/aggregation/largest-file?parentPath=/ur0EriZVNqqzjf38/4gJvm6cfbp4dsfbE/98Qk0MkdhhKkczmr/
+
+### Get the total file size in subtree
+GET {{base-url}}/nodes/aggregation/total-size?parentPath=/ur0EriZVNqqzjf38/4gJvm6cfbp4dsfbE/98Qk0MkdhhKkczmr/

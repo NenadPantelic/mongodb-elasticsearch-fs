@@ -3,15 +3,16 @@ from string import ascii_letters
 
 ASCII_LETTERS = ascii_letters
 NUMS = "0123456789"
-ASCII_ALPHANUMS = random.choice(list(ASCII_LETTERS + NUMS))
+ASCII_ALPHANUMS = list(ASCII_LETTERS + NUMS)
+random.shuffle(ASCII_ALPHANUMS)
 
-PUNCTUATION_MARKS = [" ", " ", " ", " ", " ", " ", " ", ", ", ", ", ";", ".", ".", ".", "?", "!", ":"]
+PUNCTUATION_MARKS = [", ", ", ", ";", ".", ".", ".", "?", "!", ":"]
 random.shuffle(PUNCTUATION_MARKS)
 
 
 def load_words(file_name):
     with open(file_name, 'r') as fin:
-        return fin.readlines()
+        return [line.strip() for line in fin.readlines()]
 
 
 WORDS = load_words('resources/english_words.txt')
@@ -45,13 +46,15 @@ def random_bool():
 
 def random_text(num_of_words=100):
     words = []
-    for i in range(num_of_words - 1):
+    for i in range(1, num_of_words):
         word = get_random_word()
         words.append(word)
 
+        # add a separator
         if i % 10 == 0:
-            # add a separator
             words.append(random.choice(PUNCTUATION_MARKS))
+        else:
+            words.append(" ")
 
     words.append(get_random_word())
     words.append(".")

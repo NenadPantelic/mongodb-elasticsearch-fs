@@ -1,0 +1,12 @@
+server.port: 9500
+spring:
+  application:
+    name: mongodb-fs
+  data:
+    mongodb:
+      authentication-database: admin
+      username: rootuser
+      password: rootpass
+      database: filesystem
+      port: 27017
+      host: localhost
